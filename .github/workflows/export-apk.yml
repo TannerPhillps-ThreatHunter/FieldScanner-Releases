@@ -1,0 +1,19 @@
+name: Export APK artifact
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'artifact/FieldScanner-v0.5-debug.apk'
+      - '.github/workflows/export-apk.yml'
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FieldScanner-v0.5-debug-apk
+          path: artifact/FieldScanner-v0.5-debug.apk
+          if-no-files-found: error
+          compression-level: 0
